@@ -32,4 +32,16 @@ class ClubreadyApi {
 		return $raw_data;
     }
 
+    function GetUser($store_id,$UserId=null,$FullDetail=null) {
+    	$ch = curl_init();
+		$headers = array();
+		$headers[] = "Accept: application/json";
+		$hook_url = "http://www.clubready.com/api/current/users/{UserId}?ApiKey=$this->api_key&StoreId=$store_id&UserId=$UserId&FullDetail=$FullDetail";
+		curl_setopt( $ch, CURLOPT_URL, $hook_url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+		$raw_data = curl_exec( $ch );
+		return $raw_data;
+    }
+
 }
